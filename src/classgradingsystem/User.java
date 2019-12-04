@@ -65,12 +65,11 @@ public abstract class User {
     }
     
     public boolean login(String username, String password){
-        return this.username == username && this.password == password;
+        return 0 == this.username.compareTo(username) && 0 == this.password.compareTo(password);
     }
     
-    public abstract void displayName (String firstname, String lastname);
+    public abstract String getName();
     
     @Override
     public abstract String toString();   
-    
 }
