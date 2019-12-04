@@ -90,6 +90,7 @@ public class ClassRecord {
     
     @Override
     public String toString(){
+        calculateFinalGrade();
         return "Final Grade of " + this.student_id + ": " + this.final_grade;
     }
 }
