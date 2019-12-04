@@ -11,7 +11,8 @@ import java.util.*;
  *
  * @author user
  */
-public abstract class Teacher extends User {
+public class Teacher extends Employee {
+    
     private int teacher_id;
     private String department_name;
     private List<Class> classList;
@@ -20,6 +21,13 @@ public abstract class Teacher extends User {
         super(user_id, username, password, firstname, lastname);
     }
 
+    public Teacher(int user_id, String username, String password, String firstname, String lastname, int teacher_id, String department_name, List<Class> classList) {
+        super(user_id, username, password, firstname, lastname);
+        this.teacher_id = teacher_id;
+        this.department_name = department_name;
+        this.classList = classList;
+    }
+    
     public int getTeacher_id() {
         return teacher_id;
     }
@@ -43,29 +51,62 @@ public abstract class Teacher extends User {
     public void setClassList(List<Class> classList) {
         this.classList = classList;
     }
+
+    public Class getClass(int class_id){
+        Class ret = null;
+        
+        if (0 < classList.size()) {
+            for (Class c : classList) {
+                if (c.getClassId() == class_id) {
+                    ret = c;
+                    break;
+                }
+            }
+        }
+        
+        return ret;
+    }
     
-//    public Class getClass(int class_id){
-//        
-//    }
-//    
-//    public boolean addClass(Class newClass){
-//    
-//    }
-//    
-//    public boolean removeClass(int class_id){
-//        
-//    }
-//    
-//    public boolean updateClass(Class newClass){
-//    
-//    }
-        @Override
-    public String getName() {
+    public boolean addClass(Class newClass){
+        return this.classList.add(newClass);
+    }
+    
+    public boolean removeClass(int class_id){
+        if (0 < this.classList.size()) {
+            try {
+                this.classList.remove(this.classList.indexOf(getClass(class_id)));
+                return true;
+            } catch (IndexOutOfBoundsException ex){
+                return false;
+            }
+        } else {
+            return false;
+        }
+        
+    }
+    
+    public boolean updateClass(Class newClass){
+        if (0 < this.classList.size()) {
+            int ndx = this.classList.indexOf(getClass(newClass.getClassId()));
+            
+            if (-1 == ndx) {
+                return false;
+            } else {
+                this.classList.set(ndx, newClass);
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+   
+    @Override
+    public String getName (){
         return "Teacher Name: " + this.getFirstname() + " " + this.getLastname();
     }
      
-//    @Override
-//    public String toString(){
-////        return "Username:" + username + "First Name:";
-//    } 
+    @Override
+    public String toString(){
+        return "User type: Teacher";
+    } 
 }
