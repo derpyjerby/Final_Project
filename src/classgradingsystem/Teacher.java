@@ -25,6 +25,7 @@ public class Teacher extends Employee {
         super(user_id, username, password, firstname, lastname);
         this.teacher_id = teacher_id;
         this.department_name = department_name;
+        this.classList = new ArrayList<>();
     }
     
     public Teacher(int user_id, String username, String password, String firstname, String lastname, int teacher_id, String department_name, List<Class> classList) {

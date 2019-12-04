@@ -25,6 +25,7 @@ public class Class {
         this.teacher_id = teacher_id;
         this.schedule = "0700-SaSu";
         this.isClassEnded = false;
+        this.classRecordList = new ArrayList<>();
     }
     
     public Class(int class_id, int subject_id, int teacher_id, String schedule, boolean isClassEnded, List<ClassRecord> classRecordList) {

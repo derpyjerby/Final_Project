@@ -24,6 +24,7 @@ public class Student extends User{
         super(user_id, username, password, firstname, lastname);
         this.student_id = student_id;
         this.general_average = 0;
+        this.classRecordList = new ArrayList<>();
     }
     
     public Student(int user_id, String username, String password, String firstname, String lastname, int student_id, float general_average, List<ClassRecord> classRecordList) {
