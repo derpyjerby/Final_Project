@@ -21,6 +21,12 @@ public class Teacher extends Employee {
         super(user_id, username, password, firstname, lastname);
     }
 
+    public Teacher(int user_id, String username, String password, String firstname, String lastname, int teacher_id, String department_name) {
+        super(user_id, username, password, firstname, lastname);
+        this.teacher_id = teacher_id;
+        this.department_name = department_name;
+    }
+    
     public Teacher(int user_id, String username, String password, String firstname, String lastname, int teacher_id, String department_name, List<Class> classList) {
         super(user_id, username, password, firstname, lastname);
         this.teacher_id = teacher_id;

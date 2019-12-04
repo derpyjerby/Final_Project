@@ -111,7 +111,7 @@ public class Student extends User{
      
     @Override
     public String toString() {
-        return "User type: Teacher";
+        return "User type: Student";
     }
 
 }

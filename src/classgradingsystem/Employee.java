@@ -14,11 +14,11 @@ public class Employee extends User {
     private String employeeType;
     
     public Employee(int user_id, String username, String password, String firstname, String lastname) {
-        super(user_id, username, password, firstname, password);
+        super(user_id, username, password, firstname, lastname);
     }
     
     public Employee(int user_id, String username, String password, String firstname, String lastname, String employeeType) {
-        super(user_id, username, password, firstname, password);
+        super(user_id, username, password, firstname, lastname);
         this.employeeType = employeeType;
     }
 
