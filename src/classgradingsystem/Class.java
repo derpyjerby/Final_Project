@@ -19,6 +19,23 @@ public class Class {
     private boolean isClassEnded;
     private List <ClassRecord> classRecordList;
 
+    public Class(int class_id, int subject_id, int teacher_id) {
+        this.class_id = class_id;
+        this.subject_id = subject_id;
+        this.teacher_id = teacher_id;
+        this.schedule = "0700-SaSu";
+        this.isClassEnded = false;
+    }
+    
+    public Class(int class_id, int subject_id, int teacher_id, String schedule, boolean isClassEnded, List<ClassRecord> classRecordList) {
+        this.class_id = class_id;
+        this.subject_id = subject_id;
+        this.teacher_id = teacher_id;
+        this.schedule = schedule;
+        this.isClassEnded = isClassEnded;
+        this.classRecordList = classRecordList;
+    }
+
     public int getClassId() {
         return class_id;
     }
@@ -67,23 +84,55 @@ public class Class {
         this.classRecordList = classRecordList;
     }
     
-//    public ClassRecord getClassRecord(int student_id){
-//        
-//    }
-//    
-//    public boolean addClassRecord (ClassRecord classRecord){
-//        
-//    }
-//    
-//    public boolean removeClassRecord (int student_id){
-//        
-//    }
-//    
-//    public boolean updateClassRecord (ClassRecord classRecord){
-//        
-//    }
-//    
-//    public String toString(){
-//        
-//    }
+    public ClassRecord getClassRecord(int student_id, int class_id){
+        ClassRecord ret = null;
+        
+        if (0 <= classRecordList.size()) {
+            for (ClassRecord c : classRecordList) {
+                if (c.getStudentId()== student_id && c.getClassId() == class_id) {
+                    ret = c;
+                    break;
+                }
+            }
+        }
+        
+        return ret;
+    }
+    
+    public boolean addClassRecord (ClassRecord classRecord){
+        return this.classRecordList.add(classRecord);
+    }
+    
+    public boolean removeClassRecord (int student_id, int class_id){
+        if (0 < this.classRecordList.size()) {
+            try {
+                this.classRecordList.remove(this.classRecordList.indexOf(getClassRecord(student_id, class_id)));
+                return true;
+            } catch (IndexOutOfBoundsException ex){
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean updateClassRecord (ClassRecord classRecord){
+        if (0 < this.classRecordList.size()) {
+            int ndx = this.classRecordList.indexOf(getClassRecord(classRecord.getStudentId(), classRecord.getClassId()));
+            
+            if (-1 == ndx) {
+                return false;
+            } else {
+                this.classRecordList.set(ndx, classRecord);
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+    
+    @Override
+    public String toString(){
+        return "Schedule: " + this.schedule;
+    }
 }

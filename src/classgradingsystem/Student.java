@@ -20,6 +20,12 @@ public class Student extends User{
         super(user_id, username, password, firstname, lastname);
     }
     
+    public Student(int user_id, String username, String password, String firstname, String lastname, int student_id) {
+        super(user_id, username, password, firstname, lastname);
+        this.student_id = student_id;
+        this.general_average = 0;
+    }
+    
     public Student(int user_id, String username, String password, String firstname, String lastname, int student_id, float general_average, List<ClassRecord> classRecordList) {
         super(user_id, username, password, firstname, lastname);
         this.student_id = student_id;
@@ -51,12 +57,12 @@ public class Student extends User{
         this.general_average = general_average;
     }
     
-    public ClassRecord getClassRecord(int class_id){
+    public ClassRecord getClassRecord(int class_id, int student_id){
         ClassRecord ret = null;
         
-        if (0 < classRecordList.size()) {
+        if (0 <= classRecordList.size()) {
             for (ClassRecord c : classRecordList) {
-                if (c.getClassId() == class_id) {
+                if (c.getClassId() == class_id && c.getStudentId() == student_id) {
                     ret = c;
                     break;
                 }
@@ -70,10 +76,10 @@ public class Student extends User{
         return this.classRecordList.add(classRecord);
     }
     
-    public boolean removeClassRecord(int class_id){
+    public boolean removeClassRecord(int class_id, int student_id){
         if (0 < this.classRecordList.size()) {
             try {
-                this.classRecordList.remove(this.classRecordList.indexOf(getClassRecord(class_id)));
+                this.classRecordList.remove(this.classRecordList.indexOf(getClassRecord(class_id, student_id)));
                 return true;
             } catch (IndexOutOfBoundsException ex){
                 return false;
@@ -85,7 +91,7 @@ public class Student extends User{
     
     public boolean updateClassRecord(ClassRecord classRecord){
         if (0 < this.classRecordList.size()) {
-            int ndx = this.classRecordList.indexOf(getClassRecord(classRecord.getClassId()));
+            int ndx = this.classRecordList.indexOf(getClassRecord(classRecord.getClassId(), classRecord.getStudentId()));
             
             if (-1 == ndx) {
                 return false;

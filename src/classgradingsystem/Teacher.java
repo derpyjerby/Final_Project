@@ -55,7 +55,7 @@ public class Teacher extends Employee {
     public Class getClass(int class_id){
         Class ret = null;
         
-        if (0 < classList.size()) {
+        if (0 <= classList.size()) {
             for (Class c : classList) {
                 if (c.getClassId() == class_id) {
                     ret = c;
