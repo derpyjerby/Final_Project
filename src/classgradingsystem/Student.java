@@ -11,10 +11,21 @@ import java.util.*;
  *
  * @author user
  */
-public abstract class Student extends User{
+public class Student extends User{
     private int student_id;
     private float general_average;
     private List<ClassRecord> classRecordList;
+    
+    public Student(int user_id, String username, String password, String firstname, String lastname) {
+        super(user_id, username, password, firstname, lastname);
+    }
+    
+    public Student(int user_id, String username, String password, String firstname, String lastname, int student_id, float general_average, List<ClassRecord> classRecordList) {
+        super(user_id, username, password, firstname, lastname);
+        this.student_id = student_id;
+        this.general_average = general_average;
+        this.classRecordList = classRecordList;
+    }
     
     public List<ClassRecord> getClassRecordList() {
         return classRecordList;
@@ -40,24 +51,51 @@ public abstract class Student extends User{
         this.general_average = general_average;
     }
     
-//    public ClassRecord getClassRecord(int class_id){
-//        
-//    } 
+    public ClassRecord getClassRecord(int class_id){
+        ClassRecord ret = null;
+        
+        if (0 < classRecordList.size()) {
+            for (ClassRecord c : classRecordList) {
+                if (c.getClassId() == class_id) {
+                    ret = c;
+                    break;
+                }
+            }
+        }
+        
+        return ret;
+    } 
     
-//    public boolean addClassRecord(ClassRecord classRecord){
-//        
-//    }
-//    
-//    public boolean removeClassRecord(int class_id){
-//        
-//    }
-//    
-//    public boolean updateClassRecord(ClassRecord classRecord){
-//        
-//    }
-//    
-    public Student(int user_id, String username, String password, String firstname, String lastname) {
-        super(user_id, username, password, firstname, lastname);
+    public boolean addClassRecord(ClassRecord classRecord){
+        return this.classRecordList.add(classRecord);
+    }
+    
+    public boolean removeClassRecord(int class_id){
+        if (0 < this.classRecordList.size()) {
+            try {
+                this.classRecordList.remove(this.classRecordList.indexOf(getClassRecord(class_id)));
+                return true;
+            } catch (IndexOutOfBoundsException ex){
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean updateClassRecord(ClassRecord classRecord){
+        if (0 < this.classRecordList.size()) {
+            int ndx = this.classRecordList.indexOf(getClassRecord(classRecord.getClassId()));
+            
+            if (-1 == ndx) {
+                return false;
+            } else {
+                this.classRecordList.set(ndx, classRecord);
+                return true;
+            }
+        } else {
+            return false;
+        }
     }
     
     @Override
@@ -65,9 +103,9 @@ public abstract class Student extends User{
         return "Student Name: " + this.getFirstname() + " " + this.getLastname();
     }
      
-//    @Override
-//    public String toString(){
-////        return "Username:" + username + "First Name:";
-//    } 
+    @Override
+    public String toString() {
+        return "User type: Teacher";
+    }
 
 }

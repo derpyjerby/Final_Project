@@ -82,7 +82,6 @@ public class Teacher extends Employee {
         } else {
             return false;
         }
-        
     }
     
     public boolean updateClass(Class newClass){
