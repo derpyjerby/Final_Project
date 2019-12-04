@@ -36,6 +36,7 @@ public class ClassGradingSystem {
         for (User user : userList) {
             System.out.println(user.getName());
             System.out.println(user.toString());
+            System.out.println("");
         }
 
         //System.out.println("Hello Avatar Brandon!");
