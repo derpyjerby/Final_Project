@@ -101,7 +101,7 @@ public class Teacher extends Employee {
    
     @Override
     public String getName (){
-        return "Teacher Name: " + this.getFirstname() + " " + this.getLastname();
+        return this.department_name + " Teacher Name: " + this.getFirstname() + " " + this.getLastname();
     }
      
     @Override

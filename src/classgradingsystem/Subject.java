@@ -29,7 +29,8 @@ public class Subject {
         this.subject_name = subject_name;
     }
     
-//    public String toString(){
-//        
-//    }
+    @Override
+    public String toString(){
+        return "Subject Name: " + this.subject_name;
+    }
 }
