@@ -61,9 +61,8 @@ public abstract class Student extends User{
     }
     
     @Override
-    public void displayName (String firstname, String lastname){
-        System.out.println("First Name: "+firstname);
-        System.out.println("Last Name: "+lastname);
+    public String getName() {
+        return "Student Name: " + this.getFirstname() + " " + this.getLastname();
     }
      
 //    @Override

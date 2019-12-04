@@ -17,6 +17,7 @@ public class ClassGradingSystem {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("Hello Avatar Brandon!");
+        new Login();
     }
     
 }
