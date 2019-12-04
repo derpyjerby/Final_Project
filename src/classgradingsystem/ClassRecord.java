@@ -17,6 +17,24 @@ public class ClassRecord {
     private float attendance_grade;
     private float final_grade; 
 
+    public ClassRecord (int class_id, int student_id) {
+        this.class_id = class_id;
+        this.student_id = student_id;
+        this.activities_grade = 0;
+        this.quizzes_grade = 0;
+        this.attendance_grade = 0;
+        this.final_grade = 0;
+    }
+    
+    public ClassRecord (int class_id, int student_id, float activities_grade, float quizzes_grade, float attendance_grade, float final_grade) {
+        this.class_id = class_id;
+        this.student_id = student_id;
+        this.activities_grade = activities_grade;
+        this.quizzes_grade = quizzes_grade;
+        this.attendance_grade = attendance_grade;
+        this.final_grade = final_grade;
+    }
+    
     public int getClassId() {
         return class_id;
     }
@@ -66,11 +84,12 @@ public class ClassRecord {
     }
     
     public void calculateFinalGrade(){
-        this.final_grade = this.activities_grade + this.attendance_grade + this.class_id + this.final_grade + this.quizzes_grade + this.student_id;
-        this.final_grade /= 6;
+        this.final_grade = this.activities_grade + this.attendance_grade + this.quizzes_grade;
+        this.final_grade /= 3;
     }
     
-//    public String toString(){
-//        
-//    }
+    @Override
+    public String toString(){
+        return "Final Grade of " + this.student_id + ": " + this.final_grade;
+    }
 }
